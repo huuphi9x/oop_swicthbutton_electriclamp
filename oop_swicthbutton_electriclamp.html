@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electric Lamp</title>
+</head>
+<body>
+<input type="button" value="Lamp" onclick="electricLamp.getStatus()"><br/>
+<input type="button" value="Switch" onclick="switchButton.connectToLamp()">
+<input type="button" value="Switch On" onclick="switchButton.switchOn()">
+<input type="button" value="Switch Off" onclick="switchButton.switchOff()">
+<script>
+    let ElectricLamp = function (status) {
+        this.status = status;
+        this.getStatus = function () {
+            alert(this.status);
+        };
+        this.turnOn = function () {
+            return this.status = true;
+        };
+        this.turnOff = function () {
+            return this.status = false;
+        };
+    };
+    let SwitchButton = function (status, ElectricLamp) {
+        this.status = status;
+        this.electriclamp = ElectricLamp;
+        this.connectToLamp = function () {
+            alert("Connected to Lamp!");
+            this.status = true;
+        };
+        this.switchOn = function () {
+            if (this.status) {
+                this.electriclamp.turnOn();
+                this.electriclamp.getStatus();
+            } else {
+                alert("Not connected to Lamp!");
+            }
+        };
+        this.switchOff = function () {
+            if (this.status) {
+                this.electriclamp.turnOff();
+                this.electriclamp.getStatus();
+            } else {
+                alert("Not connected to Lamp!");
+            }
+        };
+    };
+    let electricLamp = new ElectricLamp(false);
+    let switchButton = new SwitchButton(false, electricLamp);
+</script>
+</body>
+</html>
+
+
+
